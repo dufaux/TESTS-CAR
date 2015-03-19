@@ -31,6 +31,7 @@ public class ParticipantSynchroneImpl extends UnicastRemoteObject implements Ele
 	}
 	
 	public int getIdentifiant(){
+		System.out.println("quelqu'un affiche l'identifiant");
 		return this.id;
 	}
 	
