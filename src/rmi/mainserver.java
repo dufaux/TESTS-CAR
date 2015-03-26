@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
@@ -14,26 +13,22 @@ public class mainserver {
 	/**
 	 * @param args
 	 * @throws RemoteException 
+	 * @throws UnknownHostException 
 	 */
-	public static void main(String[] args) throws RemoteException {
+	public static void main(String[] args) throws RemoteException, UnknownHostException {
 		System.out.println(" ##### MAIN SERVER ##### ");
-		LocateRegistry.createRegistry(1099);
+		System.setProperty("java.rmi.server.hostname","localhost");
+		int port = 1100;
+		System.out.println(" Serveur RMI sur port "+port);
+		LocateRegistry.createRegistry(port);
 		
 		ElectionParticipantSynchrone eps1;
-		eps1 = new ParticipantSynchroneImpl(65);
+		eps1 = new ParticipantSynchroneImpl(port);
 		
-		/*ElectionParticipantSynchrone eps2 = new ParticipantSynchroneImpl(66);
-		ElectionParticipantSynchrone eps3 = new ParticipantSynchroneImpl(10);
-		ElectionParticipantSynchrone eps4 = new ParticipantSynchroneImpl(120);*/
-		
-		/*Ring r = new Ring();
-		r.add(eps1);
-		r.init();*/
 		try {
-			//String url = "rmi://" + InetAddress.getLocalHost().getHostAddress() + "/TestRMI";
-			//System.out.println("Enregistrement de l'objet avec l'url : " + url);
-			//Naming.rebind(url, eps1);
-			Naming.bind("participant",eps1);
+//			String url = "rmi://" + InetAddress.getLocalHost().getHostAddress() +":"+ port +"/participant1";
+			//Naming.bind("participant",eps1);
+			Naming.bind("participant2",eps1);
 			//Naming.bind("participant1",eps1);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
