@@ -17,18 +17,20 @@ public class mainserver {
 	 */
 	public static void main(String[] args) throws RemoteException, UnknownHostException {
 		System.out.println(" ##### MAIN SERVER ##### ");
-		System.setProperty("java.rmi.server.hostname","localhost");
-		int port = 1100;
-		System.out.println(" Serveur RMI sur port "+port);
-		LocateRegistry.createRegistry(port);
-		
+		//System.setProperty("java.rmi.server.hostname","172.18.12.77");
+		int port = 1099;
+		System.out.println(" Serveur sur port "+port);
+		//LocateRegistry.createRegistry(port);
+		//LocateRegistry.getRegistry("172.18.12.77", 1099);
 		ElectionParticipantSynchrone eps1;
 		eps1 = new ParticipantSynchroneImpl(port);
 		
+		
+		
 		try {
 //			String url = "rmi://" + InetAddress.getLocalHost().getHostAddress() +":"+ port +"/participant1";
-			//Naming.bind("participant",eps1);
-			Naming.bind("participant2",eps1);
+			Naming.bind("rmi://172.18.12.78:1099/participant3",eps1);
+			//Naming.bind("participant2",eps1);
 			//Naming.bind("participant1",eps1);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

@@ -17,4 +17,6 @@ public interface ElectionParticipantSynchrone extends Remote{
 	
 	public int getIdentifiant() throws RemoteException;
 	
+	public void setIdentifiant(int id) throws RemoteException;
+	
 }

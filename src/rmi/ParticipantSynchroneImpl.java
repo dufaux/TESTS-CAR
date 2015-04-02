@@ -49,5 +49,9 @@ public class ParticipantSynchroneImpl extends UnicastRemoteObject implements Ele
 		}
 		return voisinGauche.election(initiateur, idMax, candidat);
 	}
+	
+	public void setIdentifiant(int id) throws RemoteException {
+		this.id = id;
+	}
 
 }
