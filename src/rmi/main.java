@@ -29,13 +29,9 @@ public class main {
 			
 			Registry r = LocateRegistry.getRegistry("172.18.12.78",1099);
 			System.out.println(" ##### MAIN CLIENT ##### ");
-			r.list();
-			System.out.println(r.list().length);
-			//ElectionParticipantSynchrone eps = (ElectionParticipantSynchrone) r.lookup("participant");
-			//System.out.println("Mon identifiant est :" + eps.getIdentifiant());
-			
-			/*ElectionParticipantSynchrone eps2 = new ParticipantSynchroneImpl(123456);
-			Naming.bind("participant2",eps2);*/
+			ElectionParticipantSynchrone eps  = (ElectionParticipantSynchrone) Naming
+					.lookup("rmi://localhost/participant2");
+			System.out.println("Mon identifiant est :" + eps.getIdentifiant());
 		}
 
 	}
